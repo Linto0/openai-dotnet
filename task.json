@@ -1,0 +1,40 @@
+{
+  "configurations": [
+    {
+      "type": "coreclr",
+      "request": "launch",
+      "name": "Launch OpenAI Project",
+      "program": "${workspaceFolder}/${input:projectPath}/bin/Debug/net8.0/${input:executableName}.dll",
+      "preLaunchTask": "build"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "projectPath",
+      "description": "Select the project to launch",
+      "options": [
+        "src",
+        "examples",
+        "tests"
+      ]
+    },
+    {
+      "type": "promptString",
+      "id": "executableName",
+      "description": "Name of your executable"
+    }
+  ],
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "build",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/${input:projectPath}"
+      ],
+      "problemMatcher": ["$msCompile"]
+    }
+  ]
+}
